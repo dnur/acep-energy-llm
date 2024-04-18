@@ -1,0 +1,10 @@
+.App {
+  text-align: left; /* Center align the text content of the App component */
+}
+
+.page{
+  width: 100%;
+  height: 100%;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+}
