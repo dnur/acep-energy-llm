@@ -16,7 +16,7 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: R1oMB9M2dlazUcO2FKLTmLSgiPHnw5uDdt8cxR4z
           accountId: Yc3bb6c38808e198ff2b638c8895a6c6a
           projectName: acep-energy-llm
           directory: ./Frontend/build
