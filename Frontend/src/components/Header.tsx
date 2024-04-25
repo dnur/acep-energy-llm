@@ -28,7 +28,7 @@ export default function Header() {
               </a>
               <a className="navTab" href="/">Chat</a>
               <a className="navTab" href="/about">About</a>
-              <a className="flex items-center space-x-2 text-gray-600 hover:text-gray-900" href="https://github.com/NajibHaidar/ACEP-LLM" rel="noopener noreferrer" target="_blank">
+              <a className="flex items-center space-x-2 text-gray-600 hover:text-gray-900" href="https://github.com/dnur/acep-energy-llm" rel="noopener noreferrer" target="_blank">
                   <GithubIcon className="h-6 w-6" />
                   <span>GitHub</span>
               </a>
