@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.518d1008.css",
+    "main.js": "/static/js/main.154deb98.js",
+    "static/js/453.be4f5e0c.chunk.js": "/static/js/453.be4f5e0c.chunk.js",
+    "static/media/Jiang_Benjamin_headshot.jpeg": "/static/media/Jiang_Benjamin_headshot.f557b2c11395f33c2916.jpeg",
+    "static/media/Hong_Aaron_headshot.jpeg": "/static/media/Hong_Aaron_headshot.6895a514236504ac8a71.jpeg",
+    "static/media/Nguyen_Joni_headshot.jpeg": "/static/media/Nguyen_Joni_headshot.339f7298ef3e9aebf805.jpeg",
+    "static/media/Shetty_Akash_headshot.png": "/static/media/Shetty_Akash_headshot.81cab048c3cdf6ec3170.png",
+    "static/media/Haidar_Najib_headshot.jpeg": "/static/media/Haidar_Najib_headshot.8cf686a200bbb60ab3c3.jpeg",
+    "static/media/Han_Brian_headshot.jpeg": "/static/media/Han_Brian_headshot.55e220d6ffd9dd4634aa.jpeg",
+    "static/media/Nakata_Gerald_headshot.jpeg": "/static/media/Nakata_Gerald_headshot.e5dd2d98ddaac6a994ad.jpeg",
+    "static/media/Waldinger_Whitney_headshot.jpeg": "/static/media/Waldinger_Whitney_headshot.83239b940d74b5658b75.jpeg",
+    "index.html": "/index.html",
+    "main.518d1008.css.map": "/static/css/main.518d1008.css.map",
+    "main.154deb98.js.map": "/static/js/main.154deb98.js.map",
+    "453.be4f5e0c.chunk.js.map": "/static/js/453.be4f5e0c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.518d1008.css",
+    "static/js/main.154deb98.js"
+  ]
+}
