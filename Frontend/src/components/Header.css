@@ -1,0 +1,16 @@
+.header {
+  background-color: white;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  box-shadow: 0 4px 8px 0  gray;
+}
+
+.navTab {
+  font-size: 14pt;
+  font-weight: bold;
+  color: #0083C3;
+}
+
+.navTab:hover {
+  color: #EAAB12;
+}

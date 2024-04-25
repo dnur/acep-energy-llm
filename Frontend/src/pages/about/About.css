@@ -1,0 +1,46 @@
+.container {
+  width: 1000px;
+  margin-top: 25pt;
+}
+
+.heading1 {
+  font-size: 25pt;
+  margin-top: 25pt;
+}
+
+.heading2 {
+  font-size: 20pt;
+  margin-top: 15pt;
+}
+
+.paragraph {
+  font-size: 12pt;
+  margin-top: 10pt;
+}
+
+.whiteSpace {
+  margin-bottom: 60pt;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10pt;
+  /*
+  box-shadow: 0 4px 8px 0  gray;
+  border-radius: 15px;
+  */
+}
+
+.flex-img {
+  width: 25%;
+  float: left;
+  padding: 10px;
+}
+
+.flex-text {
+  width: 75%;
+  float: left;
+  padding: 15px;
+}

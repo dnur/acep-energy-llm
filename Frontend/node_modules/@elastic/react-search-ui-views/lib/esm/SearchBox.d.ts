@@ -1,0 +1,33 @@
+import React, { FormEvent } from "react";
+import type { AutocompleteResult, AutocompleteSuggestion, SearchContextState } from "@elastic/search-ui";
+import { BaseContainerProps, SearchBoxAutocompleteViewProps, InputViewProps } from "./types";
+export declare type SearchBoxContainerContext = Pick<SearchContextState, "autocompletedResults" | "autocompletedSuggestions" | "searchTerm" | "setSearchTerm" | "trackAutocompleteClickThrough" | "trackAutocompleteSuggestionClickThrough">;
+export declare type SearchBoxContainerProps = BaseContainerProps & SearchBoxContainerContext & {
+    view?: React.ComponentType<SearchBoxViewProps>;
+    autocompleteView?: React.ComponentType<SearchBoxAutocompleteViewProps>;
+    inputView?: React.ComponentType<InputViewProps>;
+    autocompleteMinimumCharacters?: number;
+    autocompleteResults?: AutocompleteResult | boolean;
+    autocompleteSuggestions?: boolean | AutocompleteSuggestion;
+    shouldClearFilters?: boolean;
+    debounceLength?: number;
+    inputProps?: any;
+    onSelectAutocomplete?: any;
+    onSubmit?: (searchTerm: string) => void;
+    searchAsYouType?: boolean;
+};
+export declare type SearchBoxViewProps = BaseContainerProps & Pick<SearchBoxContainerProps, "autocompleteView" | "inputView" | "autocompleteSuggestions" | "autocompleteResults" | "autocompleteSuggestions" | "autocompletedResults" | "autocompletedSuggestions"> & {
+    allAutocompletedItemsCount: number;
+    autocompletedSuggestionsCount: any;
+    completeSuggestion: (searchQuery: string) => void;
+    isFocused: boolean;
+    notifyAutocompleteSelected: (selection: any) => void;
+    onChange: (value: string) => void;
+    onSelectAutocomplete: any;
+    onSubmit: (e: FormEvent) => void;
+    useAutocomplete: boolean;
+    value: string;
+    inputProps: any;
+};
+declare function SearchBox(props: SearchBoxViewProps): JSX.Element;
+export default SearchBox;
