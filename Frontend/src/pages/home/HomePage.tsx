@@ -1,4 +1,4 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import Chat from "../../components/Chat";
 import "./HomePage.css";
 
