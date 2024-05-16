@@ -1,9 +1,50 @@
-Here is the instruction of how to get the flaskapp to run on your google cloud run.
-Use 'gcloud auth login' to login to your account for authentication
-Use 'gcloud config set project PROJECT_ID' (Project_ID = your project ID) to choose the correct project.
-Use 'gcloud services enable run.googleapis.com' and 'gcloud services enable containerregistry.googleapis.com' to enable nessassary google cloud services.
-Use 'gcloud auth configure-docker' to authenticate gcloud to use docker.
-Use 'docker build -t gcr.io/Project_ID/Project_name:v1 .' (Project_name = docker image name you are building)
-Use 'docker push gcr.io/Project_ID/Project_name:v1' to push the docker build to the gcr.
-Use 'gcloud run deploy flaskapp --image gcr.io/Project_ID/Project_name:v1 --platform managed --region us-west1 --allow-unauthenticated' note we use us-west1 here 
-feel free to use any service that is close to you.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deploying Flask App on Google Cloud Run</title>
+</head>
+<body>
+    <h1>Deploying Flask App on Google Cloud Run</h1>
+    <p>Follow these steps to deploy your Flask application on Google Cloud Run.</p>
+    <h2>Steps</h2>
+    <ol>
+        <li>
+            <strong>Authenticate with Google Cloud</strong>
+            <p>Use the following command to login to your Google Cloud account:</p>
+            <pre><code>gcloud auth login</code></pre>
+        </li>
+        <li>
+            <strong>Set the Google Cloud Project</strong>
+            <p>Replace <code>PROJECT_ID</code> with your actual project ID:</p>
+            <pre><code>gcloud config set project PROJECT_ID</code></pre>
+        </li>
+        <li>
+            <strong>Enable Necessary Google Cloud Services</strong>
+            <p>Enable the Cloud Run and Container Registry APIs:</p>
+            <pre><code>gcloud services enable run.googleapis.com</code></pre>
+            <pre><code>gcloud services enable containerregistry.googleapis.com</code></pre>
+        </li>
+        <li>
+            <strong>Configure Docker to Use Google Cloud</strong>
+            <p>Authenticate Docker to use your Google Cloud account:</p>
+            <pre><code>gcloud auth configure-docker</code></pre>
+        </li>
+        <li>
+            <strong>Build the Docker Image</strong>
+            <p>Replace <code>PROJECT_ID</code> and <code>PROJECT_NAME</code> with your project ID and desired Docker image name:</p>
+            <pre><code>docker build -t gcr.io/PROJECT_ID/PROJECT_NAME:v1 .</code></pre>
+        </li>
+        <li>
+            <strong>Push the Docker Image to Google Container Registry</strong>
+            <p>Push the built Docker image to your Google Container Registry:</p>
+            <pre><code>docker push gcr.io/PROJECT_ID/PROJECT_NAME:v1</code></pre>
+        </li>
+        <li>
+            <strong>Deploy the Flask App on Google Cloud Run</strong>
+            <p>Deploy your Flask app using the following command. Replace <code>PROJECT_ID</code> and <code>PROJECT_NAME</code> with your project ID and Docker image name:</p>
+            <pre><code>gcloud run deploy flaskapp --image gcr.io/PROJECT_ID/PROJECT_NAME:v1 --platform managed --region us-west1 --allow-unauthenticated</code></pre>
+        </li>
+    </ol>
+    <p>Note: We use <code>us-west1</code> here; feel free to use any region that is closer to you.</p>
+</body>
+</html>
