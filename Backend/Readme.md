@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <h1>Deploying Flask App on Google Cloud Run</h1>
 </head>
 <body>
-    <h1>Deploying Flask App on Google Cloud Run</h1>
     <p>Follow these steps to deploy your Flask application on Google Cloud Run.</p>
     <h2>Steps</h2>
     <ol>
