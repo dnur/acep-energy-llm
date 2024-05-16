@@ -138,8 +138,7 @@ export default function Searchbar() {
                     {/*Show the table response as markdown style*/}
                   {/*<div dangerouslySetInnerHTML={{ __html: response.text}} />*/}
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{response.text}</ReactMarkdown>
-                </p>
-                {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
+                  {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
                   <div className="sources">
                     <p>Sources:</p>
                     <ul>
@@ -151,6 +150,7 @@ export default function Searchbar() {
                     </ul>
                   </div>
                 )}
+                </p>
               </div>
             ))}
           </div>
