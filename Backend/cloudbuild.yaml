@@ -1,4 +1,26 @@
 # cloudbuild.yaml
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy']
+  # build & push the container image
+  - name: gcr.io/kaniko-project/executor:latest
+    args:
+      [
+        "--cache=true",
+        "--cache-ttl=48h",
+        "--destination=gcr.io/$PROJECT_ID/${TRIGGER_NAME}:latest",
+        "--dockerfile=Dockerfile",
+      ]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "beta",
+        "run",
+        "deploy",
+        "${TRIGGER_NAME}",
+        "--image",
+        "gcr.io/$PROJECT_ID/${TRIGGER_NAME}:latest",
+        "--region",
+        "us-central1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+      ]
