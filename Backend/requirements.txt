@@ -1,0 +1,9 @@
+Flask
+gunicorn
+flask-cors
+together
+pymongo
+flasks
+flask_cors
+python-dotenv
+llmware
