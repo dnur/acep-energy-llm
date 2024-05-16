@@ -46,6 +46,6 @@
         </li>
     </ol>
     <p>Note: We use <code>us-west1</code> here; feel free to use any region that is closer to you.</p>
-    <p>Also, you can change <code>v1</code> into any names for the version such as v2</p>
+    <p>Also, you can change <code>v1</code> into any names for the version such as <code>v2</code></p>
 </body>
 </html>
