@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Deploying Flask App on Google Cloud Run</title>
 </head>
 <body>
     <h1>Deploying Flask App on Google Cloud Run</h1>
