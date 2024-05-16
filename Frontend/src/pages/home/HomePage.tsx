@@ -1,13 +1,15 @@
-import Header from "../../components/Header";
-import Chat from "../../components/Chat";
-import "./HomePage.css";
+import NavBar from "../../components/NavBar/NavBar"
+import InfoButton from "../../components/InfoButton/InfoButton"
+import Chat from "../../components/Chat/Chat"
+import "./HomePage.css"
 
 
 export default function  HomePage() {
     return (
-    <div className="min-h-screen bg-gray">
-      <Header />
-      <Chat />
-    </div>
+        <div className="min-h-screen bg-gray">
+          <NavBar />
+          <Chat />
+          <InfoButton />
+        </div>
   );
 }

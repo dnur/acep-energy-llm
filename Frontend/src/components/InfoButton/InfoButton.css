@@ -1,0 +1,33 @@
+/*---------------------------Information Box---------------------------*/
+.information-box {
+  height: fit-content;
+  width: 200px;
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  border-radius: 0.375rem;
+  padding: 10px;
+  padding-bottom: 25px;
+  background-color: #BEC1C6;
+}
+
+
+/*---------------------------Information Button---------------------------*/
+.info-button {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
+  border-radius: 50%;
+}
+
+.info-logo {
+  width: 25px;
+  height: 25px;
+  position: relative;
+}
+
+.x-logo {
+  width: 25px;
+  height: 25px;
+  position: relative;
+}

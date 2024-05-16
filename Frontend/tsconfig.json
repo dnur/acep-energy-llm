@@ -19,10 +19,7 @@
     "noImplicitAny": false,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": [
     "src"

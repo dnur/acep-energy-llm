@@ -1,0 +1,69 @@
+.container {
+  width: 1000px;
+  margin-top: 25pt;
+}
+
+h1 {
+  font-size: 25pt;
+  margin-top: 25pt;
+  font-weight: bold;
+  color: #0084c1;
+}
+
+h2 {
+  font-size: 20pt;
+  margin-top: 15pt;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+h3 {
+  font-size: 15pt;
+  margin-top: 15pt;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 10pt;
+  margin-top: 5pt;
+  font-style: italic;
+  text-align: center;
+}
+
+p {
+  font-size: 12pt;
+  margin-top: 10pt;
+}
+
+ol {
+  margin-left: 50pt;
+  margin-top: 5pt;
+  font-weight: bold;
+}
+
+.table {
+  color: #0084c1;
+}
+
+.table :hover {
+  color: #ffc107;
+}
+
+.white-space {
+  height: 60pt;
+}
+
+.subcontent {
+  margin-top: 20pt;
+  border-radius: 15px;
+  background-color: #F3F4F6;
+  padding: 15pt 10pt;
+}
+
+.system-overview {
+  width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10pt;
+}
