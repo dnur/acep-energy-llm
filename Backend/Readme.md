@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <h1>Deploying Flask App on Google Cloud Run. This is using windows CMD</h1>
+    <h1>Deploying Flask App on Google Cloud Run.</h1>
 </head>
 <body>
-    <p>Follow these steps to deploy your Flask application on Google Cloud Run.</p>
+    <p>Follow these steps to deploy your Flask application on Google Cloud Run. </p>
+    <p>This is using windows CMD.</p>
     <h2>Steps</h2>
     <ol>
         <li>
