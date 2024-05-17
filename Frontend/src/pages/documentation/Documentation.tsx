@@ -9,7 +9,6 @@ export default function Documentation() {
       {/* Inserts other components onto the page */}
       <div>
         <NavBar />
-        <InfoButton />
       </div>
 
       {/* Container to hold page content */}
