@@ -140,7 +140,7 @@ export default function Searchbar() {
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{response.text}</ReactMarkdown>
                   {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
                   <div className="sources">
-                    <p>Sources:</p>
+                    <p>Sources LOL:</p>
                     <ul>
                       {response.sources.map((source, sourceIndex) => (
                         <li key={sourceIndex}>
