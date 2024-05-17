@@ -63,11 +63,6 @@ export default function Searchbar() {
   const [responses, setResponses] = useState<Message[]>([
     {
       // Initial message from the bot
-      text: 'Welcome! I am your personalized research assistant. How can I help you?',
-      sender: 'bot',
-    },
-    {
-      // Initial message from the bot
       text: welcomeMessage,
       sender: 'bot',
     },
