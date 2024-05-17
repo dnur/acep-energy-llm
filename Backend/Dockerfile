@@ -17,4 +17,4 @@ EXPOSE 8080
 ENV PORT 8080
 
 # Run main.py when the container launches
-CMD ["python", "server.py"]
+CMD ["python", "main.py"]

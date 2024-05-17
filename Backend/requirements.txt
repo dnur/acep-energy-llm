@@ -7,3 +7,5 @@ flasks
 flask_cors
 python-dotenv
 llmware
+google-cloud-storage
+google-api-core

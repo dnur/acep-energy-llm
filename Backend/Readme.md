@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Deploying Flask App on Google Cloud Run</title>
+    <h1>Deploying Flask App on Google Cloud Run.</h1>
 </head>
 <body>
-    <h1>Deploying Flask App on Google Cloud Run</h1>
-    <p>Follow these steps to deploy your Flask application on Google Cloud Run.</p>
+    <p>Follow these steps to deploy your Flask application on Google Cloud Run. </p>
+    <p>This is using windows CMD.</p>
     <h2>Steps</h2>
     <ol>
         <li>
@@ -46,6 +46,6 @@
         </li>
     </ol>
     <p>Note: We use <code>us-west1</code> here; feel free to use any region that is closer to you.</p>
-    <p>Also, you can change v1 into any names for the version such as v2</p>
+    <p>Also, you can change <code>v1</code> into any names for the version such as <code>v2</code></p>
 </body>
 </html>

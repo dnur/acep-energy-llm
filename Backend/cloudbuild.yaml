@@ -7,7 +7,7 @@ steps:
         "--cache=true",
         "--cache-ttl=48h",
         "--destination=gcr.io/$PROJECT_ID/${TRIGGER_NAME}:latest",
-        "--dockerfile=Dockerfile",
+        "--dockerfile=/Backend/Dockerfile",
       ]
   - name: "gcr.io/cloud-builders/gcloud"
     args:
