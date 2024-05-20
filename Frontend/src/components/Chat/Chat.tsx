@@ -186,14 +186,14 @@ export default function Searchbar() {
                   {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
                     <div className="sources">
                       <h3>Sources:</h3>
-                      <ul>
+                      <div className="sources-container">
                       {response.sources.map((source, sourceIndex) => (
-                        <li key={sourceIndex}>
+                        <button key={sourceIndex}>
                           {/* Extract the file name from the URL */}
                           <a href={source} target="_blank" rel="noopener noreferrer">{source.split('/').pop()}</a>
-                        </li>
+                        </button>
                       ))}
-                      </ul>
+                      </div>
                     </div>
                   )}
                 </div>

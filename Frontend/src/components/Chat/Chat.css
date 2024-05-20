@@ -136,6 +136,8 @@ th, td {
   background: none;
   opacity: 100%;
   padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .buttons-container > button:hover {
@@ -145,6 +147,24 @@ th, td {
 .buttons-container > button.active{
   background-color: #ffc107;
 }
+
+.sources-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sources-container > button {
+  opacity: 100%;
+  background-color: white;
+  margin: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sources-container > button > a {
+  display: flex;
+  width: fit-content;
+}
+
 
 
 
