@@ -20,6 +20,10 @@
   }
 }
 
+.columns {
+  columns: 2,
+}
+
 /*-----Chat Message Bubble Styles------*/
 .message {
   margin-bottom: 8px;
