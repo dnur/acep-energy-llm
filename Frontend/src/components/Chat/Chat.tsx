@@ -43,7 +43,7 @@ materials, the initiative aims to alleviate this burden by providing a user-frie
 prompt and accurate information retrieval. We hope you find this version to your liking and that it
 proves helpful in your endeavors!
 ## Customize ChatBot Responses
-Click an icon on the right hand of the page to get started and tailor the **tone and personality of your personalized
+Click on an icon on the right hand of the page to get started and tailor the **tone and personality of your personalized
 research assistant**. Choose a formal, professional style or a friendly, conversational
 approach - the responses will match your preferred manner while providing informative and
 customized assistance.`
@@ -51,7 +51,7 @@ customized assistance.`
 interface Message {
   text: string;
   sender: string;
-  sources?: string[];
+  sources?: Sources[];
   buttons?: Buttons[];
 }
 
@@ -60,6 +60,14 @@ interface Buttons {
   label: string;
   image: string; // URL of the image
   action: () => void;
+}
+
+interface Sources {
+  website_url: string;
+  title: string;
+  author: string;
+  year: number;
+  pdf_url: string;
 }
 
 interface Icon {
@@ -180,7 +188,51 @@ export default function Searchbar() {
                       {response.sources.map((source, sourceIndex) => (
                         <button key={sourceIndex}>
                           {/* Extract the file name from the URL */}
-                          <a href={source} target="_blank" rel="noopener noreferrer">{source.split('/').pop()}</a>
+                          {source.website_url && ( // Show website link only if it exists
+                            <a className="title"
+                              href={source.website_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {source.title ? source.title : "Title of the Article"}
+                            </a>
+                          )}
+
+                          {!source.website_url && ( // Show fallback if no website URL
+                            <span className="title">
+                              {source.title ? source.title : "Title of the Article"} (No website link available)
+                            </span>
+                          )}
+
+                          <span>
+                            {source.author && source.year ? ( // Show author and year if both exist
+                              "\n" + source.author + " Published in " + source.year
+                            ) : (
+                              "\nAuthor's Name Not Found, Year of Publication Not Found" // Fallback if author or year missing
+                            )}
+                          </span>
+
+                          {source.pdf_url && ( // Show PDF link only if it exists
+                            <a
+                              className="pdf"
+                              href={source.pdf_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {source.title ? source.title : "PDF"}
+                            </a>
+                          )}
+
+                          {!source.pdf_url && ( // Show fallback if no PDF URL
+                            <a
+                              className="pdf"
+                              href="google.com" // Or any other fallback URL
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              PDF (No direct link available)
+                            </a>
+                          )}
                         </button>
                       ))}
                       </div>
@@ -192,10 +244,10 @@ export default function Searchbar() {
           </div>
         </div>
 
-        {/* Personality Container */}
+      {/* Personality Container */}
       <div className="personality-container" style={{ width: containerWidth }}>
         {/* Paragraph for changing container width */}
-        <button onClick={toggleContainerWidth}>{currentState}</button>
+        <button id="side-bar" onClick={toggleContainerWidth}>{currentState === "Expand" ? "Show More" : "Close X"}</button>
         {currentState === "Close" ? (
           // Render this div when the condition is true
           <div className="buttons-container">
@@ -232,9 +284,6 @@ export default function Searchbar() {
             </button>
           </div>
         )}
-
-        {/* Personality Buttons */}
-
       </div>
 
         {/* The Input Box */}

@@ -108,6 +108,7 @@ th, td {
   border: 1px solid black;
 }
 
+/*-----Personality Icon-----*/
 .icon-img{
   padding: 10px;
   background-color: white;
@@ -126,14 +127,14 @@ th, td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: lightgrey;
+  background-color: white;
   color: #374151;
   right: 10px;
   top: 90px;
 }
 
 .buttons-container {
-  max-height: 70vh;
+  max-height: 75vh;
   overflow-y: auto;
 }
 
@@ -141,6 +142,7 @@ th, td {
   display: flex;
   opacity: 100%;
   padding: 10px;
+  background-color: #c3c3c5;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -153,7 +155,7 @@ th, td {
 }
 
 .buttons-container .right {
-  vertical-align: center;
+  align-self: center;
   text-align: left;
 }
 
@@ -168,6 +170,7 @@ th, td {
 .sources-container {
   display: flex;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .sources-container > button {
@@ -175,9 +178,26 @@ th, td {
   background-color: white;
   margin: 5px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 }
 
-.sources-container > button > a {
-  display: flex;
-  width: fit-content;
+.title {
+  font-size: 15px;
+}
+
+.pdf {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+#side-bar {
+  width: 100px;
+  align-self: flex-end;
+  opacity: 100%;
+}
+
+#side-bar:hover {
+  background-color: #f3f4f6;
 }
