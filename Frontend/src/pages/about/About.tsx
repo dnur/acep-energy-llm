@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import NavBar from "../../components/NavBar/NavBar"
-import InfoButton from "../../components/InfoButton/InfoButton"
 import "./About.css"
 import najibPicture from "../../images/headshots/Haidar_Najib_headshot.jpeg"
 import aaronPicture from "../../images/headshots/Hong_Aaron_headshot.jpeg"

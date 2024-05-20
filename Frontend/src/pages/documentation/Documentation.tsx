@@ -1,5 +1,4 @@
 import NavBar from "../../components/NavBar/NavBar"
-import InfoButton from "../../components/InfoButton/InfoButton"
 import "./Documentation.css"
 import systemOverview from "../../images/system-overview.png"
 
