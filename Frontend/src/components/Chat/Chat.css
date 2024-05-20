@@ -133,10 +133,11 @@ th, td {
   color: #374151;
   right: 10px;
   top: 90px;
+  padding: 10px;
 }
 
 .buttons-container {
-  max-height: 60vh;
+  max-height: 80vh;
   overflow-y: auto;
 }
 
