@@ -43,7 +43,7 @@ materials, the initiative aims to alleviate this burden by providing a user-frie
 prompt and accurate information retrieval. We hope you find this version to your liking and that it
 proves helpful in your endeavors!
 ## Customize ChatBot Responses
-Click an icon below to get started and tailor the **tone and personality of your personalized
+Click an icon on the right hand of the page to get started and tailor the **tone and personality of your personalized
 research assistant**. Choose a formal, professional style or a friendly, conversational
 approach - the responses will match your preferred manner while providing informative and
 customized assistance.`
@@ -66,37 +66,34 @@ interface Icon {
   id: number;
   name: string;
   path: string;
+  description: string;
 }
 
 const icons: Icon[] = [
-  { id: 0, name: "Default", path: "/icons/default.png" },
-  { id: 1, name: "Insightful", path: "/icons/insightful.png" },
-  { id: 2, name: "Direct", path: "/icons/direct.png" },
-  { id: 3, name: "Investigative", path: "/icons/investigative.png" },
-  { id: 4, name: "Organized", path: "/icons/organize.png" },
-  { id: 5, name: "Analytical", path: "/icons/analytical.jpeg" },
-  { id: 6, name: "Creative", path: "/icons/creative.png" },
-  { id: 7, name: "Data-Driven", path: "/icons/data-driven.png" },
-  { id: 8, name: "Collaborative", path: "/icons/collaborative.png" },
-  { id: 9, name: "Systematic", path: "/icons/systematic.png" },
+  { id: 0, name: "Default", path: "/icons/default.png", description: "The default option provides a balanced mix of features, offering general assistance to cater to a wide range of research needs." },
+  { id: 1, name: "Insightful", path: "/icons/insightful.png", description: "An imaginative summarizer who creates detailed insights for researchers using APA formatting and reliable data sources." },
+  { id: 2, name: "Direct", path: "/icons/direct.png", description: "A concise and straightforward assistant specializing in semantic search to quickly direct researchers to relevant information." },
+  { id: 3, name: "Investigative", path: "/icons/investigative.png", description: "An assistant who asks follow-up questions and dives deeper into topics to help researchers make informed decisions." },
+  { id: 4, name: "Organized", path: "/icons/organize.png", description: "A research assistant who helps organize complex information, providing context and important facts for coherent research." },
+  { id: 5, name: "Analytical", path: "/icons/analytical.jpeg", description: "An analytical companion focused on data analysis, statistical interpretation, and providing insights based on empirical evidence." },
+  { id: 6, name: "Creative", path: "/icons/creative.png", description: "A creative connector who draws connections between disparate pieces of information and generates innovative ideas." },
+  { id: 7, name: "Data-Driven", path: "/icons/data-driven.png", description: "A data enthusiast who sources and validates data, ensuring accuracy and reliability to support researchers' work." },
+  { id: 8, name: "Collaborative", path: "/icons/collaborative.png", description: "A collaborative partner who works with researchers to brainstorm ideas, develop research plans, and facilitate teamwork." },
+  { id: 9, name: "Systematic", path: "/icons/systematic.png", description: "A methodical guide who helps researchers follow structured research methodologies and adhere to best practices." },
 ];
 
 export default function Searchbar() {
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [activeButton, setActiveButton] = useState<number | null>(null);
+  const [activeButton, setActiveButton] = useState<number>(0);
   const [responses, setResponses] = useState<Message[]>([
     {
       // Initial message from the bot
       text: welcomeMessage,
       sender: 'bot',
-      buttons: icons.map((icon, index) => ({
-        label: icon.name,
-        image: String(icon.path),
-        action: () => handleButtonClick(index),
-      })),
     },
   ]);
+
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -116,11 +113,9 @@ export default function Searchbar() {
     const userMessage = userInput;
 
     // If this is the first query, remove the welcome message
-    const updatedResponses = responses.findIndex(response => response.text.includes("Welcome to the ACEP Research Chatbot")) !== -1
-    ? responses.filter((_, index) => index !== 1)
-    : responses;
+    const updatedResponses = responses.filter(response => !response.text.includes("Welcome to the ACEP Research Chatbot"));
 
-    setUserInput(''); // Clear input after sending
+    setUserInput(''); // Clear input after sendings
     setResponses((prevResponses) => [
       // Send waiting message first before getting the response
       { text: "Waiting for a response...", sender: 'bot'},
@@ -130,7 +125,7 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', { text: userInput, flavor: activeButton });
+      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', { text: userInput, personality: activeButton ? icons[activeButton].name.toLowerCase() : null });
 
       setResponses((prevResponses) => [
           {
@@ -157,6 +152,16 @@ export default function Searchbar() {
     console.log(`${icons[index].name} was clicked!`);
   };
 
+  const [containerWidth, setContainerWidth] = useState('100px'); // Initial width of the personality container
+  const [currentState, setState] = useState("Expand");
+
+  // Function to toggle the width of the personality container
+  const toggleContainerWidth = () => {
+    // If the container width is currently smaller, increase it; otherwise, decrease it
+    setContainerWidth(containerWidth === '100px' ? '400px' : '100px');
+    setState(currentState === "Expand" ? "Close" : "Expand");
+  };
+
   return (
     <main>
       <div className="chat">
@@ -167,21 +172,6 @@ export default function Searchbar() {
               <div key={index} className={`message ${response.sender === 'user' ? 'user' : 'bot'}`}>
                 <div className="message-text">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{response.text}</ReactMarkdown>
-                  {/* Render buttons if they exist */}
-                  {response.buttons && response.buttons.length > 0 && (
-                    <div className="buttons-container">
-                      {response.buttons.map((button, buttonIndex) => (
-                        <button
-                          key={buttonIndex}
-                          onClick={() => handleButtonClick(buttonIndex)}
-                          className={activeButton === buttonIndex ? 'active' : ''}
-                        >
-                          <img src={button.image} alt={button.label} className="icon-img"/>
-                          <span>{button.label}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
                   {/* Render sources if they exist */}
                   {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
                     <div className="sources">
@@ -201,6 +191,51 @@ export default function Searchbar() {
             ))}
           </div>
         </div>
+
+        {/* Personality Container */}
+      <div className="personality-container" style={{ width: containerWidth }}>
+        {/* Paragraph for changing container width */}
+        <button onClick={toggleContainerWidth}>{currentState}</button>
+        {currentState === "Close" ? (
+          // Render this div when the condition is true
+          <div className="buttons-container">
+          {icons.map((icon, index) => (
+            <button
+              key={index}
+              onClick={() => handleButtonClick(index)}
+              className={activeButton === index ? 'active' : ''}
+              style={{ width: containerWidth}}
+            >
+              <div className="left">
+                <img src={icon.path} alt={icon.name} className="icon-img"/>
+                <span>{icon.name}</span>
+              </div>
+              <div className="right">
+                  <span>{icon.description}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+        ) : (
+          // Render this div when the condition is false
+          <div className="buttons-container">
+            <button
+              key={activeButton}
+              onClick={() => handleButtonClick(activeButton)}
+              className={'active'}
+              style={{ width: containerWidth}}
+            >
+              <div className="left">
+                <img src={icons[activeButton].path} alt={icons[activeButton].name} className="icon-img"/>
+                <span>{icons[activeButton].name}</span>
+              </div>
+            </button>
+          </div>
+        )}
+
+        {/* Personality Buttons */}
+
+      </div>
 
         {/* The Input Box */}
         <footer className="footer">
