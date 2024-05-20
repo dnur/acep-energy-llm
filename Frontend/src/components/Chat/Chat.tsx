@@ -43,7 +43,10 @@ materials, the initiative aims to alleviate this burden by providing a user-frie
 prompt and accurate information retrieval. We hope you find this version to your liking and that it
 proves helpful in your endeavors!
 ## Customize ChatBot Responses
-To customize the chatbots responses, click on one of the icons below.`
+Click an icon below to get started and tailor the **tone and personality of your personalized
+research assistant**. Choose a formal, professional style or a friendly, conversational
+approach - the responses will match your preferred manner while providing informative and
+customized assistance.`
 
 interface Message {
   text: string;
@@ -65,139 +68,33 @@ interface Icon {
   path: string;
 }
 
-let personality;
-
 const icons: Icon[] = [
-  {
-    id: 1,
-    name: "Insightful",
-    path: "../../images/icons/insightful.jpeg",
-  },
-  {
-    id: 2,
-    name: "Direct",
-    path: "../../images/icons/direct.png",
-  },
-  {
-    id: 3,
-    name: "Investigative",
-    path: "./../images/icons/investigative.png",
-  },
-  {
-    id: 4,
-    name: "Organized",
-    path: "../../images/icons/organized.png",
-  },
-  {
-    id: 5,
-    name: "Analytical",
-    path: "./icons/analytical.jpeg",
-  },
-  {
-    id: 6,
-    name: "Creative",
-    path: "./icons/creative.png",
-  },
-  {
-    id: 7,
-    name: "Data-Driven",
-    path: "./icons/data-driven.png",
-  },
-  {
-    id: 8,
-    name: "Collaborative",
-    path: "./icons/collaborative.png",
-  },
-  {
-    id: 9,
-    name: "Systematic",
-    path: "./icons/systematic.png",
-  },
+  { id: 0, name: "Default", path: "/icons/default.png" },
+  { id: 1, name: "Insightful", path: "/icons/insightful.png" },
+  { id: 2, name: "Direct", path: "/icons/direct.png" },
+  { id: 3, name: "Investigative", path: "/icons/investigative.png" },
+  { id: 4, name: "Organized", path: "/icons/organize.png" },
+  { id: 5, name: "Analytical", path: "/icons/analytical.jpeg" },
+  { id: 6, name: "Creative", path: "/icons/creative.png" },
+  { id: 7, name: "Data-Driven", path: "/icons/data-driven.png" },
+  { id: 8, name: "Collaborative", path: "/icons/collaborative.png" },
+  { id: 9, name: "Systematic", path: "/icons/systematic.png" },
 ];
 
 export default function Searchbar() {
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
-
+  const [activeButton, setActiveButton] = useState<number | null>(null);
   const [responses, setResponses] = useState<Message[]>([
     {
       // Initial message from the bot
       text: welcomeMessage,
       sender: 'bot',
-      buttons: [
-        {
-          label: icons[0].name,
-          image: String(icons[0].path),
-          action: () => {
-            personality = icons[0].name;
-            console.log(icons[0].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[1].name,
-          image: String(icons[1].path),
-          action: () => {
-            personality = icons[1].name;
-            console.log(icons[1].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[2].name,
-          image: String(icons[2].path),
-          action: () => {
-            personality = icons[2].name;
-            console.log(icons[2].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[3].name,
-          image: String(icons[3].path),
-          action: () => {
-            personality = icons[3].name;
-            console.log(icons[3].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[4].name,
-          image: String(icons[4].path),
-          action: () => {
-            personality = icons[4].name;
-            console.log(icons[4].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[5].name,
-          image: String(icons[5].path),
-          action: () => {
-            personality = icons[5].name;
-            console.log(icons[5].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[6].name,
-          image: String(icons[6].path),
-          action: () => {
-            personality = icons[6].name;
-            console.log(icons[6].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[7].name,
-          image: String(icons[7].path),
-          action: () => {
-            personality = icons[7].name;
-            console.log(icons[7].name + " was clicked!");
-          }
-        },
-        {
-          label: icons[8].name,
-          image: String(icons[8].path),
-          action: () => {
-            personality = icons[8].name;
-            console.log(icons[8].name + " was clicked!");
-          }
-        },
-      ]
+      buttons: icons.map((icon, index) => ({
+        label: icon.name,
+        image: String(icon.path),
+        action: () => handleButtonClick(index),
+      })),
     },
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
@@ -233,7 +130,7 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', { text: userInput, flavor: personality });
+      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', { text: userInput, flavor: activeButton });
 
       setResponses((prevResponses) => [
           {
@@ -255,6 +152,11 @@ export default function Searchbar() {
     }
   };
 
+  const handleButtonClick = (index: number) => {
+    setActiveButton(index);
+    console.log(`${icons[index].name} was clicked!`);
+  };
+
   return (
     <main>
       <div className="chat">
@@ -269,30 +171,34 @@ export default function Searchbar() {
                   {response.buttons && response.buttons.length > 0 && (
                     <div className="buttons-container">
                       {response.buttons.map((button, buttonIndex) => (
-                        <button key={buttonIndex} onClick={button.action}>
-                          <img src={button.image} alt={button.label} />
+                        <button
+                          key={buttonIndex}
+                          onClick={() => handleButtonClick(buttonIndex)}
+                          className={activeButton === buttonIndex ? 'active' : ''}
+                        >
+                          <img src={button.image} alt={button.label} className="icon-img"/>
                           <span>{button.label}</span>
                         </button>
                       ))}
                     </div>
                   )}
-            {/* Render sources if they exist */}
-            {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
-              <div className="sources">
-                <p>Sources:</p>
-                <ul>
-                {response.sources.map((source, sourceIndex) => (
-                  <li key={sourceIndex}>
-                    {/* Extract the file name from the URL */}
-                    <a href={source} target="_blank" rel="noopener noreferrer">{source.split('/').pop()}</a>
-                  </li>
-                ))}
-                </ul>
+                  {/* Render sources if they exist */}
+                  {response.sender === 'bot' && response.sources && response.sources.length > 0 && (
+                    <div className="sources">
+                      <h3>Sources:</h3>
+                      <ul>
+                      {response.sources.map((source, sourceIndex) => (
+                        <li key={sourceIndex}>
+                          {/* Extract the file name from the URL */}
+                          <a href={source} target="_blank" rel="noopener noreferrer">{source.split('/').pop()}</a>
+                        </li>
+                      ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-        </div>
-      ))}
+            ))}
           </div>
         </div>
 

@@ -20,10 +20,6 @@
   }
 }
 
-.columns {
-  columns: 2,
-}
-
 /*-----Chat Message Bubble Styles------*/
 .message {
   margin-bottom: 8px;
@@ -111,5 +107,44 @@ table {
 th, td {
   border: 1px solid black;
 }
+
+.icon-img{
+  padding: 10px;
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.buttons-container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  background-color: none;
+  color: #374151;
+}
+
+.buttons-container > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: none;
+  opacity: 100%;
+  padding: 10px;
+}
+
+.buttons-container > button:hover {
+  background-color: #ffc1078a;
+}
+
+.buttons-container > button.active{
+  background-color: #ffc107;
+}
+
 
 
