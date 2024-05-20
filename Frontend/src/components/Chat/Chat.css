@@ -119,6 +119,8 @@ th, td {
 }
 
 .personality-container {
+  position: relative; /* This is required for z-index to work */
+  z-index: 9999;
   position: fixed;
   width: 100px;
   margin-left: auto;
@@ -127,14 +129,14 @@ th, td {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   color: #374151;
   right: 10px;
   top: 90px;
 }
 
 .buttons-container {
-  max-height: 75vh;
+  max-height: 60vh;
   overflow-y: auto;
 }
 
