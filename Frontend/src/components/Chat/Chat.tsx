@@ -36,19 +36,15 @@ import remarkGfm from "remark-gfm";
 //   I've referenced the following Doc_IDs: * 9734b5ac-7f5a-495f-bb94-50eb9f75985e * 1034e068-56ff-4557-b6f6-03d0296803b1 * a1233b65-62f4-4596-a600-a6461130eba2 * 9300609b-62cf-4
 //   `;
 
-const welcomeMessage =  `
-# Welcome to the ACEP Research Chatbot!
+const welcomeMessage = `# Welcome to the ACEP Research Chatbot!
 The **Alaska Center for Energy and Power (ACEP)** has spent the last 6 months designing and
 implementing an advanced Language Model (LLM) Chatbot tailored specifically to the field of energy
 research. Recognizing the significant time and effort researchers invest in searching for relevant
 materials, the initiative aims to alleviate this burden by providing a user-friendly interface for
 prompt and accurate information retrieval. We hope you find this version to your liking and that it
 proves helpful in your endeavors!
-## Example Prompts
-Click on one of the following prompts to get started:
-1. Give me a summary of ...
-2. Show me a table of documents that include ...
-`
+## Customize ChatBot Responses
+To customize the chatbots responses, click on one of the three icons below.`
 
 interface Message {
   text: string;

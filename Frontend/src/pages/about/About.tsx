@@ -35,7 +35,6 @@ export default function About() {
       {/* Inserts other components onto the page */}
       <div>
         <NavBar />
-        <InfoButton />
       </div>
 
       {/* Page content component */}

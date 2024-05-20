@@ -1,6 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar"
 import InfoButton from "../../components/InfoButton/InfoButton"
 import Chat from "../../components/Chat/Chat"
+import Personality from "../../components/Personality/Personality"
 import "./HomePage.css"
 
 
@@ -10,6 +11,7 @@ export default function  HomePage() {
           <NavBar />
           <Chat />
           <InfoButton />
+          <Personality />
         </div>
   );
 }
