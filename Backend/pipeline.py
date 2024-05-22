@@ -18,29 +18,38 @@ def generate_embeddings(input_texts: List[str], embedding_model_string: str, tog
     )
     return [x.embedding for x in outputs.data]
 
-def query_database(collection, query: str, embedding_model_string: str, vector_database_field_name: str, index_name: str, together_client, keys_to_extract):
+def query_database(collection, query: str, embedding_model_string: str, vector_database_field_name: str, index_name: str, together_client):
+    """
+    Perform a vector search in the MongoDB collection using the provided query.
+
+    Args:
+        collection (MongoDB Collection): The MongoDB collection to search.
+        query (str): Query text to search for relevant documents.
+        embedding_model_string (str): Embedding model to use for generating query embeddings.
+        vector_database_field_name (str): Field name containing document embeddings.
+        index_name (str): Name of the vector search index.
+        together_client (together.Together): Together API client.
+
+    Returns:
+        pymongo.cursor.Cursor: Results from the MongoDB vector search.
+    """
+    # Generate embedding for the query
     query_emb = generate_embeddings([query], embedding_model_string, together_client)[0]
-    
-    # Construct the projection dynamically based on keys_to_extract
-    projection = {key: 1 for key in keys_to_extract}
-    projection["confidence_score"] = {"$meta": "searchScore"}
-    
+
+    # Execute vector search in MongoDB
     results = collection.aggregate([
         {
             "$vectorSearch": {
                 "queryVector": query_emb,
                 "path": vector_database_field_name,
-                "numCandidates": 1000,
-                "limit": 10,
-                "index": index_name,
+                "numCandidates": 1000, # Number of potential matches to evaluate
+                "limit": 10, # Number of results to return
+                "index": index_name, # Specify the index used for vector search
             }
-        },
-        {
-            "$project": projection
         }
     ])
-    
-    return list(results)
+
+    return results
 
 
 def generate_personality_prompt(personality_chosen):
