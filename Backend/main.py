@@ -50,7 +50,7 @@ def send_query():
         embedding_model_string='togethercomputer/m2-bert-80M-8k-retrieval',
         vector_database_field_name='embedding_together_m2-bert-8k-retrieval',
         index_name='SemanticSearch',
-        keys_to_extract=["text", "title", "author_or_speaker", "subject", "keywords", "description"],
+        keys_to_extract=["text", "title", "author_or_speaker", "subject", "keywords", "description", "date"],
         chat_history=chat_history,  # Pass the chat history to the pipeline
         personality_chosen=personality
     )
@@ -63,3 +63,4 @@ def send_query():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port)
+    
