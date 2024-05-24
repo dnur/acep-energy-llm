@@ -134,9 +134,10 @@ export default function Searchbar() {
     try {
       const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
         text: userInput,
-        personality: icons[activeButton].name // Add the personality data
+        personality: icons[activeButton].name, // Add the personality data
+        response: responses
       });
-      console.log("response = " + response);
+      console.log("responses: " + JSON.stringify(responses));
       setResponses((prevResponses) => [
         {
           text: response.data.response,
@@ -189,41 +190,20 @@ export default function Searchbar() {
                       <div className="sources-container">
                       {response.sources.map((source, sourceIndex) => (
                         <button key={sourceIndex}>
-                          {/* Extract the file name from the URL */}
-                          {source.website_url && ( // Show website link only if it exists
                             <a className="title"
-                              href={source.website_url}
+                              href={source['ISER_link']}
                               target="_blank"
                               rel="noopener noreferrer"
-                            >
-                              {source.title ? source.title : "Title of the Article"}
+                            > {source.title}
                             </a>
-                          )}
 
-                          {!source.website_url && ( // Show fallback if no website URL
-                            <span className="title">
-                              {source.title ? source.title : "Title of the Article"} (No website link available)
-                            </span>
-                          )}
-
-                          <span>
-                            {source.author && source.year ? ( // Show author and year if both exist
-                              "\n" + source.author + " Published in " + source.year
-                            ) : (
-                              "\nAuthor's Name Not Found, Year of Publication Not Found" // Fallback if author or year missing
-                            )}
-                          </span>
-
-                          {source.pdf_url && ( // Show PDF link only if it exists
+                          <span className="author">{"\n" + source.author + " Published in " + source['Year'] }</span>
                             <a
                               className="pdf"
                               href={source.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
-                            >
-                              {source.title ? source.title : "PDF"}
-                            </a>
-                          )}
+                            >View PDF</a>
 
                           {!source.pdf_url && ( // Show fallback if no PDF URL
                             <a

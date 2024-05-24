@@ -184,10 +184,17 @@ th, td {
   display: flex;
   flex-direction: column;
   width: fit-content;
+  padding: 10px;
 }
 
 .title {
   font-size: 15px;
+  text-align: left;
+  text-decoration: underline;
+}
+
+.author {
+  font-weight: 350;
 }
 
 .pdf {
