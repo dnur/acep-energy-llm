@@ -78,7 +78,6 @@ interface Icon {
 }
 
 const icons: Icon[] = [
-  { id: 0, name: "Default", path: "/icons/default.png", description: "The default option provides a balanced mix of features, offering general assistance to cater to a wide range of research needs." },
   { id: 1, name: "Insightful", path: "/icons/insightful.png", description: "An imaginative summarizer who creates detailed insights for researchers using APA formatting and reliable data sources." },
   { id: 2, name: "Direct", path: "/icons/direct.png", description: "A concise and straightforward assistant specializing in semantic search to quickly direct researchers to relevant information." },
   { id: 3, name: "Investigative", path: "/icons/investigative.png", description: "An assistant who asks follow-up questions and dives deeper into topics to help researchers make informed decisions." },
@@ -133,17 +132,20 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', { text: userInput, personality: activeButton });
-
+      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
+        text: userInput,
+        personality: icons[activeButton].name // Add the personality data
+      });
+      console.log("response = " + response);
       setResponses((prevResponses) => [
-          {
-            text: response.data.response,
-            sender: 'bot',
-            sources: response.data.sources,
-            buttons: [],
-          },
-          ...prevResponses.slice(1), // Shift the waiting message
-        ]);
+        {
+          text: response.data.response,
+          sender: 'bot',
+          sources: response.data.sources,
+          buttons: [],
+        },
+        ...prevResponses.slice(1), // Shift the waiting message
+      ]);
     } catch (error) {
       setResponses((prevResponses) => [
         { text: 'Failed to get responses from LLM.', sender: 'bot'},
