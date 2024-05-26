@@ -135,8 +135,6 @@ def run_LLM_pipeline(query: str, mongo_db_name: str, mongo_collection_name: str,
     db_results = query_database(collection, query, embedding_model_string, vector_database_field_name, index_name, together_client)
     personality_info = generate_personality_prompt(personality_chosen)
     augmented_prompt, source_links = generate_augmented_prompt(db_results, keys_to_extract, query, personality_info)    
-    chat_history.append({"role": "user", "content": augmented_prompt})
     response = query_LLM(chat_history, together_client, model_string)
-    chat_history.append({"role": "assistant", "content": response.choices[0].message.content})
 
-    return response.choices[0].message.content, source_links, chat_history
+    return response.choices[0].message.content, source_links
