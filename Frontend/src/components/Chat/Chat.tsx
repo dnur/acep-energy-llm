@@ -52,14 +52,11 @@ interface Message {
   text: string;
   sender: string;
   sources?: Sources[];
-  buttons?: Buttons[];
 }
 
-// Define the Button and Icon interfaces
-interface Buttons {
-  label: string;
-  image: string; // URL of the image
-  action: () => void;
+interface Chat {
+  text: string;
+  sender: string;
 }
 
 interface Sources {
@@ -90,6 +87,13 @@ const icons: Icon[] = [
 ];
 
 export default function Searchbar() {
+  const [chatHistory, appendChatHistory] = useState<Chat[]>([
+    {
+      // Initial message from the bot
+      text: welcomeMessage,
+      sender: 'bot',
+    },
+  ]);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [activeButton, setActiveButton] = useState<number>(0);
@@ -134,6 +138,11 @@ export default function Searchbar() {
     // If this is the first query, remove the welcome message
     const updatedResponses = responses.filter(response => !response.text.includes("Welcome to the ACEP Research Chatbot"));
 
+    appendChatHistory((prevChatHistory) => [
+      {text: userMessage, sender: "user"},
+      ...prevChatHistory,
+    ]);
+
     setUserInput(''); // Clear input after sendings
     setResponses((prevResponses) => [
       // Send waiting message first before getting the response
@@ -144,22 +153,28 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
+      const llm_response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
-        response: responses
+        response: chatHistory
       });
-      const uniqueSourceList = uniqueSources(response.data.sources);
-      console.log("response: " + JSON.stringify(response));
+      console.log(chatHistory);
+      const uniqueSourceList = uniqueSources(llm_response.data.sources);
       setResponses((prevResponses) => [
         {
-          text: response.data.response,
+          text: llm_response.data.response,
           sender: 'bot',
-          sources: uniqueSourceList,
-          buttons: [],
+          sources: uniqueSourceList
         },
-        ...prevResponses.slice(1), // Shift the waiting message
+        ...prevResponses.slice(1),
       ]);
+
+      appendChatHistory((prevChatHistory) => [
+        { text: llm_response.data.response,
+          sender: "bot"
+        },
+        ...prevChatHistory,
+      ])
     } catch (error) {
       setResponses((prevResponses) => [
         { text: 'Failed to get responses from LLM.', sender: 'bot'},
@@ -167,13 +182,12 @@ export default function Searchbar() {
       ]);
       console.error('Error sending message:', error);
     } finally {
-      setLoading(false); // Unlock the send button
+      setLoading(false);
     }
   };
 
   const handleButtonClick = (index: number) => {
     setActiveButton(index);
-    console.log(`${icons[index].name} was clicked!`);
   };
 
   const [containerWidth, setContainerWidth] = useState('100px'); // Initial width of the personality container
@@ -288,10 +302,9 @@ export default function Searchbar() {
                 value={userInput}
                 onChange={handleInputChange}
                 onEnterPress={handleSend}
-                placeholder={loading ? 'Getting response' : 'Type your message here...'} />
-            <Button id="send-button" onClick={handleSend} disabled={!userInput.trim() || loading}>
-              {loading ? "Sending..." : "Send"}
-            </Button>
+                disabled = {loading ? true : false}
+                placeholder={loading ? 'Generating Response' : 'Type your message here...'} />
+            <Button id="send-button" onClick={handleSend} disabled={!userInput.trim() || loading}>Send</Button>
           </div>
 
           {/* Disclaimer */}

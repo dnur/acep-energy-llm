@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from openai import chat
 from sympy import per
-from pipeline import run_LLM_pipeline 
+from pipeline import run_LLM_pipeline
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
 import os
@@ -38,14 +38,14 @@ def send_query():
     message_list = request.json.get('response', [])
 
     chat_history = []
-    for message in message_list:
+    for message in message_list[::-1]:
         reformatted_message = {'role': '', 'content' : ''}
         for k, v in message.items():
             if k == 'text':
                 reformatted_message['content'] = v
             elif k == 'sender':
                 if v == 'bot':
-                    v = 'assistant'               
+                    v = 'assistant'
                 reformatted_message['role'] = v
         chat_history.append(reformatted_message)
 
