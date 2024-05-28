@@ -137,7 +137,7 @@ export default function Searchbar() {
         personality: icons[activeButton].name, // Add the personality data
         response: responses
       });
-      console.log("responses: " + JSON.stringify(responses));
+      console.log("response: " + JSON.stringify(response));
       setResponses((prevResponses) => [
         {
           text: response.data.response,
