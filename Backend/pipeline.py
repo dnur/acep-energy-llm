@@ -43,7 +43,7 @@ def query_database(collection, query: str, embedding_model_string: str, vector_d
                 "queryVector": query_emb,
                 "path": vector_database_field_name,
                 "numCandidates": 1000, # Number of potential matches to evaluate
-                "limit": 10, # Number of results to return
+                "limit": 5, # Number of results to return
                 "index": index_name, # Specify the index used for vector search
             }
         }
@@ -122,7 +122,7 @@ def query_LLM(chat_history: List[Dict[str, str]], together_client, model_string)
     response = together_client.chat.completions.create(
         messages=chat_history,
         model=model_string,
-        max_tokens=512,
+        max_tokens=1024,
         temperature=0.6,
         top_k=40,
         top_p=0.8,
