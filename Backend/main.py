@@ -33,7 +33,7 @@ def send_query():
     # Extract 'text' from the JSON request body, use empty string if 'text' is not found
     query = request.json.get('text', '')
     personality = request.json.get('personality', '')
-    message_list = request.json.get('responses', [])
+    message_list = request.json.get('response', [])
 
     chat_history = []
     for message in message_list:
