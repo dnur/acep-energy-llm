@@ -1,6 +1,4 @@
 from flask import Flask, request, jsonify
-from openai import chat
-from sympy import per
 from pipeline import run_LLM_pipeline 
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
@@ -49,7 +47,7 @@ def send_query():
                 reformatted_message['role'] = v
         chat_history.append(reformatted_message)
 
-#     chat_history.append({'role': 'user', 'content': query})
+    # chat_history.append({'role': 'user', 'content': query})
 
     # Trim the chat history to the maximum length
     if len(chat_history) > MAX_CHAT_HISTORY_LENGTH:
