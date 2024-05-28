@@ -149,16 +149,16 @@ export default function Searchbar() {
       { text: "Waiting for a response...", sender: 'bot'},
       { text: userMessage, sender: 'user'},
       ...updatedResponses,
-    ]); // Pop user's message first
+    ]); // Pop user's message fi
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const llm_response = await axios.post('https://api.chat.lab.acep.uaf.edu/sendquery', {
+      const llm_response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
         response: chatHistory
       });
-      console.log(chatHistory);
+      console.log(llm_response);
       const uniqueSourceList = uniqueSources(llm_response.data.sources);
       setResponses((prevResponses) => [
         {
