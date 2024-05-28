@@ -132,12 +132,12 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://chat-tjijo6ywkq-uw.a.run.app/searchquery', {
+      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
         response: responses
       });
-      console.log("response: " + JSON.stringify(response));
+      console.log("responses: " + JSON.stringify(responses));
       setResponses((prevResponses) => [
         {
           text: response.data.response,
@@ -194,15 +194,27 @@ export default function Searchbar() {
                               href={source['ISER_link']}
                               target="_blank"
                               rel="noopener noreferrer"
-                            >{source.title}
+                            > {source.title}
                             </a>
-                            <span className="author">{"\n" + source.author + "\nPublished in " + source['Year'] }</span>
+
+                          <span className="author">{"\n" + source.author + " Published in " + source['Year'] }</span>
                             <a
                               className="pdf"
                               href={source.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
                             >View PDF</a>
+
+                          {!source.pdf_url && ( // Show fallback if no PDF URL
+                            <a
+                              className="pdf"
+                              href="google.com" // Or any other fallback URL
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              PDF (No direct link available)
+                            </a>
+                          )}
                         </button>
                       ))}
                       </div>
