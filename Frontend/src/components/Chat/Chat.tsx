@@ -153,7 +153,7 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const llm_response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
+      const llm_response = await axios.post('https://api.chat.lab.acep.uaf.edu/sendquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
         response: chatHistory
