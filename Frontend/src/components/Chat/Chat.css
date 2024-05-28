@@ -172,6 +172,7 @@ th, td {
 
 .sources-container {
   display: flex;
+  flex-wrap: wrap;
   padding: 10px;
 }
 
@@ -189,20 +190,23 @@ th, td {
 .title {
   font-size: 15px;
   text-align: left;
+  color: blue;
 }
 
 .author {
   font-weight: 350;
+  font-size: 12px;
+  color: #006621
 }
 
 .pdf {
   justify-self: flex-end;
   align-self: flex-end;
+  color: blue;
 }
 
-a {
+a:hover {
   text-decoration: underline;
-  color: blue;
 }
 
 #side-bar {

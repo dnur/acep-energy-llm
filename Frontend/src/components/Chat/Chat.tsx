@@ -116,6 +116,18 @@ export default function Searchbar() {
     setUserInput(event.target.value);
   };
 
+  const uniqueSources = (sources) => {
+    const seen = new Set();
+    return sources.filter(source => {
+      if (seen.has(source.title)) {
+        return false;
+      } else {
+        seen.add(source.title);
+        return true;
+      }
+    });
+  };
+
   const handleSend = async () => {
     const userMessage = userInput;
 
@@ -157,18 +169,6 @@ export default function Searchbar() {
     } finally {
       setLoading(false); // Unlock the send button
     }
-  };
-
-  const uniqueSources = (sources) => {
-    const seen = new Set();
-    return sources.filter(source => {
-      if (seen.has(source)) {
-        return false;
-      } else {
-        seen.add(source);
-        return true;
-      }
-    });
   };
 
   const handleButtonClick = (index: number) => {
