@@ -1,6 +1,4 @@
 from flask import Flask, request, jsonify
-from openai import chat
-from sympy import per
 from pipeline import run_LLM_pipeline
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin

@@ -137,6 +137,4 @@ def run_LLM_pipeline(query: str, mongo_db_name: str, mongo_collection_name: str,
     augmented_prompt, source_links = generate_augmented_prompt(db_results, keys_to_extract, query, personality_info)
     chat_history.append({"role": "user", "content": augmented_prompt})
     response = query_LLM(chat_history, together_client, model_string)
-    print(chat_history)
-
     return response.choices[0].message.content, source_links
