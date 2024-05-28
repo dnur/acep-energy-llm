@@ -69,7 +69,7 @@ def send_query():
     )
 
     # Return a JSON response with the query text, LLM response, and source links
-    return jsonify({'text': query, 'response': response, 'sources': source_links})
+    return jsonify({'text': query, 'response': 'response', 'sources':source_links})
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
