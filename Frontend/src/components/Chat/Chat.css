@@ -190,7 +190,6 @@ th, td {
 .title {
   font-size: 15px;
   text-align: left;
-  text-decoration: underline;
 }
 
 .author {
@@ -200,6 +199,11 @@ th, td {
 .pdf {
   justify-self: flex-end;
   align-self: flex-end;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: blue;
 }
 
 #side-bar {

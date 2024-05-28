@@ -132,7 +132,7 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://flaskapp-k22nw35fzq-uw.a.run.app/sendquery', {
+      const response = await axios.post('https://chat-tjijo6ywkq-uw.a.run.app/sendquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
         response: responses
@@ -196,25 +196,13 @@ export default function Searchbar() {
                               rel="noopener noreferrer"
                             > {source.title}
                             </a>
-
-                          <span className="author">{"\n" + source.author + " Published in " + source['Year'] }</span>
+                          <span className="author">{"\n" + source.author + "\nPublished in " + source['Year'] }</span>
                             <a
                               className="pdf"
                               href={source.pdf_url}
                               target="_blank"
                               rel="noopener noreferrer"
                             >View PDF</a>
-
-                          {!source.pdf_url && ( // Show fallback if no PDF URL
-                            <a
-                              className="pdf"
-                              href="google.com" // Or any other fallback URL
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              PDF (No direct link available)
-                            </a>
-                          )}
                         </button>
                       ))}
                       </div>
