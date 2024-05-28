@@ -137,12 +137,13 @@ export default function Searchbar() {
         personality: icons[activeButton].name, // Add the personality data
         response: responses
       });
+      const uniqueSourceList = uniqueSources(response.data.sources);
       console.log("response: " + JSON.stringify(response));
       setResponses((prevResponses) => [
         {
           text: response.data.response,
           sender: 'bot',
-          sources: response.data.sources,
+          sources: uniqueSourceList,
           buttons: [],
         },
         ...prevResponses.slice(1), // Shift the waiting message
@@ -156,6 +157,18 @@ export default function Searchbar() {
     } finally {
       setLoading(false); // Unlock the send button
     }
+  };
+
+  const uniqueSources = (sources) => {
+    const seen = new Set();
+    return sources.filter(source => {
+      if (seen.has(source)) {
+        return false;
+      } else {
+        seen.add(source);
+        return true;
+      }
+    });
   };
 
   const handleButtonClick = (index: number) => {
@@ -197,7 +210,7 @@ export default function Searchbar() {
                             > {source.title}
                             </a>
 
-                          <span className="author">{"\n" + source.author + " Published in " + source['Year'] }</span>
+                          <span className="author">{"\n" + source.author + " - " + source['Year'] }</span>
                             <a
                               className="pdf"
                               href={source.pdf_url}

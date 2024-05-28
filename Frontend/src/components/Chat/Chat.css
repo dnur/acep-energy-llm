@@ -200,7 +200,7 @@ th, td {
   align-self: flex-end;
 }
 
-a:hover {
+a {
   text-decoration: underline;
   color: blue;
 }
