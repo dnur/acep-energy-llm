@@ -208,6 +208,7 @@ a:hover {
 
 #side-bar {
   width: 100px;
+  margin-right: 10;
   align-self: flex-end;
   opacity: 100%;
 }

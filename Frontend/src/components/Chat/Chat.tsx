@@ -132,12 +132,12 @@ export default function Searchbar() {
     setLoading(true); // Lock the send button until get the response
 
     try {
-      const response = await axios.post('https://chat-tjijo6ywkq-uw.a.run.app/sendquery', {
+      const response = await axios.post('https://chat-tjijo6ywkq-uw.a.run.app/searchquery', {
         text: userInput,
         personality: icons[activeButton].name, // Add the personality data
         response: responses
       });
-      console.log("responses: " + JSON.stringify(responses));
+      console.log("response: " + JSON.stringify(response));
       setResponses((prevResponses) => [
         {
           text: response.data.response,
@@ -194,9 +194,9 @@ export default function Searchbar() {
                               href={source['ISER_link']}
                               target="_blank"
                               rel="noopener noreferrer"
-                            > {source.title}
+                            >{source.title}
                             </a>
-                          <span className="author">{"\n" + source.author + "\nPublished in " + source['Year'] }</span>
+                            <span className="author">{"\n" + source.author + "\nPublished in " + source['Year'] }</span>
                             <a
                               className="pdf"
                               href={source.pdf_url}
