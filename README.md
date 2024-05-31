@@ -39,6 +39,8 @@ This section will provide an overview of the PDF to JSON pipeline process as wel
 
 The PDF OCR (Optical Character Recognition) Pipeline handles processing inputted PDF documents and converts them into JSON files with metadata that can be fed into the LLM's vector database.
 
+<div style="text-align:center"><img src="Assets/Poster Data Ingestion Diagram v2.png" /></div>
+
 #### Metadata Fetch (pdf2doi)
 
 This step takes the PDFs and uses the package pdf2doi to get the DOI for each document, then uses the DOI database to retrieve any preexisting metadata for the document which is outputed.
