@@ -1,20 +1,22 @@
-<div style="text-align:center"><img src="logo.png" /></div>
+<div style="text-align:center"><img src="Assets/logo.png" /></div>
 
 # **<p align="center">ACEP LLM for Energy Research Papers</p>**
 
 
 # Overview 
-![image](https://github.com/NajibHaidar/ACEP-LLM/assets/107958888/8f5b117c-2f27-452d-ba1e-f373111e6639)
+<div style="text-align:center"><img src="Assets/Overall Project Diagram v3.png" /></div>
 
 
 # Table of Contents
 
 
 - [Project Information](#Project-Information)
-    - [Project Backround](##Backround)
+    - [Project Background](##Background)
     - [Backend](#Backend)
+        -[Backend Setup Guide](#Backend-Setup-Guide)
     - [Frontend](#Frontend)
-    - [Local Implmentation](#Local-Implmentation)
+        -[Frontend Setup Guide](#Frontend-Setup-Guide)
+    - [Local Implementation](#Local-Implementation)
     - [Deployment](#Deployment)
     - [Website](#Our-Website)
     - [References](#References)
@@ -22,15 +24,16 @@
 
 # Project Information
 
-## Backround
+## Background
 Our goal for this project was to create a chatbot for energy researchers at the Alaska Center for Energy and Power to streamline information and make it easier to find relevant documents for these researchers. We were able to do this by creating a RAG model. Retrieval-Augmented Generation (RAG) model combines the capabilities of a retriever and a generator to enhance the performance of tasks like question answering and content generation. The following will show the process and pipeline of this RAG model. 
 
 ## Backend
 
 This section will provide an overview of the PDF to JSON pipeline process as well as the vector database and LLM components of the chatbot.  
 
-![image](https://github.com/NajibHaidar/ACEP-LLM/assets/107958888/89f7bdfe-bef5-47a9-ac14-cdefa6b42328)
+### Backend Setup Guide
 
+[A guide to set up the backend](Backend/Readme.md)
 
 ### PDF OCR Pipeline
 
@@ -59,7 +62,7 @@ Takes the JSONs and stores the information from the Chunker in a vectorized form
 
 #### Language Model Implementation
 
-![image](https://github.com/NajibHaidar/ACEP-LLM/assets/107958888/110f494e-e577-403b-832b-3c1505c97f20)
+<div style="text-align:center"><img src="Assets/RAG Query Diagram.png" /></div>
 
 
 #### LLM (Llama 3)
@@ -76,7 +79,7 @@ Flask is utilized as the mediator for interacting with the LLM from the frontend
 ### Overview
 This software is a React-based Chatbot interface integrated with backend services to provide conversational responses to user queries. It utilizes React hooks for managing state and axios for making HTTP requests to the backend. The chat interface allows users to input queries and receive responses from the backend, along with relevant sources if available.  
 
-![image](https://github.com/NajibHaidar/ACEP-LLM/assets/107958888/3d9daca9-1012-45ce-baf9-f094b2874e6c)
+<div style="text-align:center"><img src="Assets/Poster Fronend v2.png" /></div>
 
 
 ### Dependencies
@@ -122,13 +125,12 @@ Build the app for production mode by running
 #### npm run build 
 
 ## Deployment
-We deployed our React application containing the HomePage component to Cloudflare Pages, a platform that simplifies the deployment process for React applications. Our Backend flask app was deployed using Google Cloud Run to efficientely contanerize our app and interact with the frontend. 
+We deployed our React application containing the HomePage component to Cloudflare Pages, a platform that simplifies the deployment process for React applications. Our Backend flask app was deployed using Google Cloud Run to efficiently containerize our app and interact with the frontend. 
 
 ## Our Website:
-Check out our website here: [Website](https://capstone-3v8.pages.dev/)
-
+Check out our website here: [Website](https://chat.lab.acep.uaf.edu/)
 
 
 ## References
 
-[List of Links to Modules Used](https://docs.google.com/document/d/1DumMWUNak_VOsiL8Gzij9y_qDGQGdSNifbKFKREQ5nk/edit?usp=sharing)
+[List of Links to Modules Used](https://docs.google.com/document/d/1Isk_NAO8wUKQ3e7VfeDZfl8wjNirx8Z06M-9j8bWJqU/edit?usp=sharing)

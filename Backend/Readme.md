@@ -51,6 +51,8 @@ Once Anaconda is installed, use it to create an isolated Python environment:
   ```
   Now you will have all your Python libraries installed and `main.py` is ready to be run! If you are using VSCode, remember to change your Python environment on the bottom right to ACEP_ENERGY_LLM to ensure that the proper environment is activated there before running the code.
 
+:warning: **Note:** The below is for creating a connection to a website. If you intend to query directly from code you DO NOT NEED to do the following. It is RECOMMENDED that you follow the rest of the instructions.
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,3 +104,7 @@ Once Anaconda is installed, use it to create an isolated Python environment:
     <p>Also, you can change <code>v1</code> into any names for the version such as <code>v2</code></p>
 </body>
 </html>
+
+:warning: **Warning:** The Flask app and Google Cloud Run deployment require the frontend to function.
+
+[Follow these instructions for setting up frontend.](../Frontend/README.md)
